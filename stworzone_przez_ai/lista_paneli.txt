@@ -1,0 +1,49 @@
+from django.db import models
+
+
+class TypPanelaHMI(models.IntegerChoices):
+    # Basic Panels
+    KTP400_BASIC = 1, "KTP400 Basic"
+    KTP700_BASIC = 2, "KTP700 Basic"
+    KTP900_BASIC = 3, "KTP900 Basic"
+    KTP1200_BASIC = 4, "KTP1200 Basic"
+
+    # Comfort Panels
+    TP700_COMFORT = 10, "TP700 Comfort"
+    TP900_COMFORT = 11, "TP900 Comfort"
+    TP1200_COMFORT = 12, "TP1200 Comfort"
+    TP1500_COMFORT = 13, "TP1500 Comfort"
+    TP1900_COMFORT = 14, "TP1900 Comfort"
+    TP2200_COMFORT = 15, "TP2200 Comfort"
+
+    KP700_COMFORT = 16, "KP700 Comfort"
+    KP900_COMFORT = 17, "KP900 Comfort"
+    KP1200_COMFORT = 18, "KP1200 Comfort"
+
+    # Unified Comfort
+    TP700_UNIFIED = 30, "Unified Comfort TP700"
+    TP900_UNIFIED = 31, "Unified Comfort TP900"
+    TP1200_UNIFIED = 32, "Unified Comfort TP1200"
+    TP1500_UNIFIED = 33, "Unified Comfort TP1500"
+    TP1900_UNIFIED = 34, "Unified Comfort TP1900"
+    TP2200_UNIFIED = 35, "Unified Comfort TP2200"
+
+    # Unified Basic
+    MTP700_UNIFIED_BASIC = 40, "Unified Basic MTP700"
+    MTP1000_UNIFIED_BASIC = 41, "Unified Basic MTP1000"
+
+    # Mobile Panels
+    MOBILE_PANEL_2ND_GEN = 50, "Mobile Panel 2nd Generation"
+    MOBILE_PANEL_277 = 51, "Mobile Panel 277"
+
+    # Key Panels
+    KP8 = 60, "KP8"
+    KP8F = 61, "KP8F"
+    KP32F = 62, "KP32F"
+
+    # Panel PC / IPC
+    IPC127E = 70, "IPC127E"
+    IPC227E = 71, "IPC227E"
+    IPC427E = 72, "IPC427E"
+    IPC477E = 73, "IPC477E Panel PC"
+    IPC677E = 74, "IPC677E Panel PC"

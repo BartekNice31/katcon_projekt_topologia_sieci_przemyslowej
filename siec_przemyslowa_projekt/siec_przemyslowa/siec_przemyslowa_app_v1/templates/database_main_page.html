@@ -1,0 +1,34 @@
+
+{%extends 'base_siec_przemyslowa.html'%}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{%block title%}
+BAZA DANYCH-LINIE PRODUKCYJNE
+
+{%endblock%}
+
+{%block header%}
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+{%endblock%}
+
+{%block content%}
+<h1>BAZA DANYCH-LINIE PRODUKCYJNE</h1> 
+</br>
+</br>
+</br>
+<div class="options-box"> 
+
+    <a href="{% url 'wyswietl_linie_produkcyjne' %}" class="btn button_class_bazadanych">
+        LINIA PRODUKCYJNA-LISTA
+    </a>
+ 
+</div>
+
+</br>
+</br>
+<a href="{% url 'main_page_application' %}" class="btn button_class_home">
+        STRONA GŁÓWNA
+    </a>
+{%endblock%}
+

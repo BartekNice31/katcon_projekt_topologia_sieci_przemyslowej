@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load django_bootstrap5 %} 
+{%block title%}
+INFORMACJE O APLIKACJI
+{%endblock%}
+
+{%block header%}
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+{%endblock%}
+
+{%block content%}
+<h1>O Aplikacji:</h1></br>
+<p>Aplikacja do przeglądu topologii sieci przemysłowej. Wersja v1.</p>
+<p>Wykorzystująca otwarty framework  przeznaczony do tworzenia aplikacji internetowych, napisany w Pythonie.</p>
+<p>Powstał pod koniec 2003 roku jako ewolucyjne rozwinięcie aplikacji internetowych</p>
+
+<a href="{% url 'main_page_application' %}" class="btn button_back_to_main">
+    Strona główna
+</a>
+{%endblock%}

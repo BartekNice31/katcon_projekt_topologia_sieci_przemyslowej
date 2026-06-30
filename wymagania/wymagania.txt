@@ -1,0 +1,9 @@
+asgiref 
+Django 
+pytz 
+sqlparse
+pandas
+numpy
+psycopg2
+django-extensions
+ipython

@@ -1,0 +1,42 @@
+.button_class_home {
+  background-color: rgb(7, 83, 247);
+  color:rgb(255, 255, 255);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_home:hover {
+  background-color: rgb(0, 215, 253);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_bazadanych{
+  background-color: rgb(13, 193, 199);
+  color:rgb(202, 184, 184);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_bazadanych:hover {
+  background-color: rgb(0, 215, 253);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
+.options-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background-color: #0366b8;
+    color: white;
+    width: 800px;
+    height: 200px;
+}  

@@ -1,0 +1,34 @@
+
+{%extends 'base.html'%}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{%block title%}
+SIEĆ PRZEMYSŁOWA KATCON
+
+{%endblock%}
+
+{%block header%}
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;">
+<img src="{% static 'images/katcon_logo2.png' %}" alt="Logo firmy" style="height:60px;">
+{%endblock%}
+
+{%block content%}
+<h1>SIEĆ PRZEMYSŁOWA KATCON-STRONA GŁÓWNA</h1>
+<h2>Witaj w aplikacji do przeglądu sieci przemysłowej.</h2>
+</br>
+</br>
+</br>
+<div class="menu-box">
+    <h3>Menu</h3>
+    <!--{% bootstrap_button "INFORMACJE" button_type="submit" button_class="button_class_informacje" %}-->
+    <a href="{% url 'informations' %}" class="btn button_class_informacje">
+        INFORMACJE
+    </a>
+    <a href="{% url 'database_main_page' %}" class="btn button_class_bazadanych">
+        BAZA DANYCH
+    </a>
+</div>
+
+{%endblock%}
+
