@@ -18,6 +18,7 @@ class LiniaProdukcyjna(models.Model):
     class Meta:
         verbose_name='Lina Produkcyjna'
         verbose_name_plural='Linie produkcyjne'
+        ordering=['Nazwa_linii']
 
 class MaszynaProdukcyjna(models.Model):
     Maszyna_nazwa=models.CharField(unique=False,blank=False,
@@ -38,6 +39,7 @@ class MaszynaProdukcyjna(models.Model):
     class Meta:
         verbose_name='Maszyna produkcyjna'
         verbose_name_plural='Maszyny produkcyjne'
+        ordering=['Maszyna_nazwa']
     
 class UrzadzenieMaszyny(models.Model):
     Nazwa_urzadzenia=models.CharField(unique=False,blank=False,null=False
@@ -65,3 +67,4 @@ class UrzadzenieMaszyny(models.Model):
     class Meta:
         verbose_name='Urządzenie w maszynie'
         verbose_name_plural='Urządzenia w maszynie'
+        ordering=['Ip_Adres']
