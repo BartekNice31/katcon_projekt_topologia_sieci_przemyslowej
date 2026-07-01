@@ -1,5 +1,5 @@
 .button_class_home {
-  background-color: rgb(7, 83, 247);
+  background-color: rgb(35, 247, 7);
   color:rgb(255, 255, 255);
   display: inline-block;
   width: auto;
@@ -35,8 +35,9 @@
     border: 1px solid #ccc;
     border-radius: 10px;
 
-    background-color: #0366b8;
-    color: white;
+    background-color: #248028;
+    color: rgb(5, 235, 128);
     width: 800px;
     height: 200px;
 }  
+ 

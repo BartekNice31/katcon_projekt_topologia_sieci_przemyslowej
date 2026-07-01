@@ -26,7 +26,7 @@ LINIE PRODUKCYJNE
     <tbody>
         {% for linia in data %}
         <tr>
-            <td> <a href="">{{ linia.Maszyna_nazwa }}</a></td>
+            <td> <a href="{% url 'wyswietl_urzadzenia_maszyny_produkcyjnej' linia.Maszyna_nazwa%}">{{ linia.Maszyna_nazwa }}</a></td>
             <td>{{ linia.Linia_produkcyjna }}</td>
             <td>{{ linia.Opis }}</td>
         </tr>

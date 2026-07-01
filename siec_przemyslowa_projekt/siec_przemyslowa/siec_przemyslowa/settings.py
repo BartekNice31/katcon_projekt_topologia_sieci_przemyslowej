@@ -130,6 +130,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "siec_przemyslowa" / "static",
-    # BASE_DIR / "siec_przemyslowa_app_v1" / "static",
+    BASE_DIR / "siec_przemyslowa_app_v1" / "static",
     BASE_DIR/'static'
 ]

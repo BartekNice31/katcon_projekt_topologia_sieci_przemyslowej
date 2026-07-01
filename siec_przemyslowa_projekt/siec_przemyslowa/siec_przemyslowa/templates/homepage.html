@@ -1,8 +1,8 @@
 
 {%extends 'base.html'%}
 {% load static %}
-{% load django_bootstrap5 %}
 
+{% load django_bootstrap5 %}
 {%block title%}
 SIEĆ PRZEMYSŁOWA KATCON
 
@@ -27,6 +27,9 @@ SIEĆ PRZEMYSŁOWA KATCON
     </a>
     <a href="{% url 'database_main_page' %}" class="btn button_class_bazadanych">
         BAZA DANYCH
+    </a>
+    <a href="{% url 'admin:index'%}" class="btn button_class_admin">
+        PANEL ADMINA
     </a>
 </div>
 

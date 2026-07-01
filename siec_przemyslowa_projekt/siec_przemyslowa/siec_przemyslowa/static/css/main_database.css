@@ -49,6 +49,8 @@
     border: 1px solid #ccc;
     border-radius: 10px;
 
-    background-color: #0d6efd;
-    color: white;
-} 
+    background-color: #248028;
+    color: rgb(18, 221, 28);
+    width: 800px;
+    height: 200px;
+}  

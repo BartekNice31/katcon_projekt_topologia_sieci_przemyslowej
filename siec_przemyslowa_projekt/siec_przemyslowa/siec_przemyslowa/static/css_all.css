@@ -1,3 +1,60 @@
+.button_class_home {
+  background-color: rgb(88, 88, 255);
+  color:rgb(255, 255, 255);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_home:hover {
+  background-color: rgb(0, 215, 253);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_bazadanych{
+  background-color: rgb(88, 88, 255);
+  color:rgb(255, 255, 255);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_bazadanych:hover {
+  background-color: rgb(0, 215, 253);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
+.button_back_to_main {
+  background-color: rgb(235, 194, 14);
+  color:rgb(255, 255, 255);
+  display: inline-block;
+  width: auto;
+}
+
+.button_back_to_main:hover {
+  background-color: rgb(250, 122, 3);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
+.options-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background-color: #248028;
+    color: rgb(18, 221, 28);
+    width: 800px;
+    height: 200px;
+}  
+
 .button_class_informacje {
   background-color: rgb(88, 88, 255);
   color:rgb(255, 255, 255);
