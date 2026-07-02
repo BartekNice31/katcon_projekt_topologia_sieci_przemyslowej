@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save
 from django.core.validators import MinLengthValidator
 from . modele.models_devices import *
 from . modele.models_line_productions import *

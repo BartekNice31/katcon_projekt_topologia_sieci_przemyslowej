@@ -1,0 +1,38 @@
+{%extends 'base_siec_przemyslowa.html'%}
+
+{% load static %}
+{% block production_lines_stylesheet_css %}
+{%endblock%}
+<link rel="stylesheet" href="{% static 'css/production_lines_stylesheet.css' %}">
+ 
+
+{% block title %}
+DODAJ URZĄDZENIE MASZYNY PRODUKCYJNEJ
+{% endblock %}
+
+{% block header %}
+<a href="{% url 'main_page_application' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+<h1>BAZA DANYCH-DODAWANIE LINII PRODUKCYJNEJ</h1>
+{% endblock %}
+
+{% block content %}
+<form  method="post">
+    {% csrf_token %}
+    {{ form }}
+    </br>
+    <input type="submit" value="Dodaj urządzenie maszyny produkcyjnej">
+</form>
+</br>
+</br>
+<a href="{% url 'main_page_application' %}" class="btn button_class_home">
+        STRONA GŁÓWNA
+</a>
+<a href="{% url 'wyswietl_linie_produkcyjne' %}" class="btn button_class_home">
+        LINIE PRODUKCYJNE
+</a>
+<a href="{% url 'dodaj_do_bazy_danych_strona' %}" class="btn button_class_home">
+        POWRÓT
+</a>
+{% endblock %}

@@ -1,0 +1,48 @@
+{%extends 'base_siec_przemyslowa.html'%}
+
+{% load static %}
+{% block production_lines_stylesheet_css %}
+{%endblock%}
+<link rel="stylesheet" href="{% static 'css/production_lines_stylesheet.css' %}">
+ 
+
+{% block title %}
+DODAWANIE DO BAZY DANYCH TOPOLOGIA SIECI
+{% endblock %}
+
+{%block header%}
+<a href="{% url 'main_page_application' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{% block content %} 
+    <h1>DODAWANIE DO BAZY DANYCH TOPOLOGIA SIECI</h1> 
+    </br>
+    </br>
+    </br>
+    <div class="options-box"> 
+    <a href="{% url 'dodaj_linie_produkcyjna_formularz' %}" class="btn button_class_bazadanych">
+        DODAJ LINIĘ PRODUKCYJNĄ
+    </a>
+
+    <a href="{% url 'dodaj_maszyne_produkcyjna_formularz' %}" class="btn button_class_bazadanych">
+        DODAJ MASZYNĘ DO LINII PRODUKCYJNEJ
+    </a>
+    <a href="{% url 'dodaj_urzadzenie_maszyny_produkcyjnej_formularz' %}" class="btn button_class_bazadanych">
+        DODAJ URZĄDZENIE DO LINII PRODUKCYJNEJ
+    </a>
+    
+    </div>
+    </br>
+    </br>
+    <a href="{% url 'main_page_application' %}" class="btn button_class_home">
+        STRONA GŁÓWNA
+    </a>
+    <a href="{% url 'wyswietl_linie_produkcyjne' %}" class="btn button_class_home">
+            LINIE PRODUKCYJNE
+    </a>
+    <a href="{% url 'database_main_page' %}" class="btn button_class_home">
+            POWRÓT
+    </a>
+{% endblock %}

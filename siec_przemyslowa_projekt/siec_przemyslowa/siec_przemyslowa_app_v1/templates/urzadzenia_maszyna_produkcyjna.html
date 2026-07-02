@@ -30,13 +30,12 @@ URZĄDZENIA MASZYNA PRODUKCYJNA {{nazwa_maszyny_produkcyjnej}}
         {% for urzadzenie in data %}
         <tr>
             <td>{{ urzadzenie.Nazwa_urzadzenia }}</a></td>
-            <!--<td><a href="{%url 'szczegoly_urzadzenia' urzadzenie.Nazwa_urzadzenia%}">{{ urzadzenie.Ip_Adres }}</a></td>-->
             <td><a href="">{{ urzadzenie.Ip_Adres }}</a></td>
-            <td>{{ urzadzenie.Rodzaj_Urzadzenia }}</td>
+            <td>{{ urzadzenie.get_Rodzaj_Urzadzenia_display }}</td>
             <td>{{urzadzenie.Maszyna_produkcyjna}}</td>
             <td>{{urzadzenie.Opis}}</td>
             <td> 
-                {% if urzadzenie.status %}
+                {% if urzadzenie.Status_Polaczenia %}
                     🟢 Online
                 {% else %}
                     🔴 Offline

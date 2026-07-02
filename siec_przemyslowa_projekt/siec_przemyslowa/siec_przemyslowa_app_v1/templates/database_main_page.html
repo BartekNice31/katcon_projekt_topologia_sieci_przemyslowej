@@ -9,7 +9,9 @@ BAZA DANYCH-LINIE PRODUKCYJNE
 {%endblock%}
 
 {%block header%}
+<a href="{% url 'main_page_application' %}">
 <img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
 {%endblock%}
 
 {%block content%}
@@ -22,17 +24,15 @@ BAZA DANYCH-LINIE PRODUKCYJNE
     <a href="{% url 'wyswietl_linie_produkcyjne' %}" class="btn button_class_bazadanych">
         LINIA PRODUKCYJNA-LISTA
     </a>
- 
-    <a href="" class="btn button_class_bazadanych">
-        DODAJ LINIĘ PRODUKCYJNĄ
-    </a>
 
-    <a href="" class="btn button_class_bazadanych">
-        DODAJ MASZYNĘ DO LINII PRODUKCYJNEJ
+    <a href="{% url 'dodaj_do_bazy_danych_strona' %}" class="btn button_class_bazadanych">
+        DODAJ DO BAZY DANYCH
     </a>
-
     <a href="" class="btn button_class_bazadanych">
-        DODAJ MASZYNĘ DO LINII PRODUKCYJNEJ
+        EDYTUJ W BAZIE DANYCH
+    </a>
+    <a href="" class="btn button_class_bazadanych">
+        USUŃ Z BAZY DANYCH
     </a>
 </div>
 

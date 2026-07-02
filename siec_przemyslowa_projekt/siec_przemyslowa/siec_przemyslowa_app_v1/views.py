@@ -1,7 +1,22 @@
 from django.shortcuts import render,get_object_or_404
 from . import models
-from .utils import ping
+from .utils import  is_device_online
 from . import checktcp
+from . import forms
+from django.http import HttpResponseRedirect,HttpResponse,HttpRequest
+from django.core.cache import cache
+import time
+
+def get_device_status(ip):
+    key = f"device_status_{ip}"
+    cached = cache.get(key)
+
+    if cached is not None:
+        return cached
+
+    status = is_device_online(ip)
+    cache.set(key, status, timeout=60)  # 60 sekund
+    return status
 
 # Create your views here.
 def baza_danych_linie_produkcyjne(request):
@@ -23,22 +38,64 @@ def wyswietl_maszyny_linii_produkcyjnej_po_nazwie(request,nazwa_linia_produkcyjn
 def wyswietl_urzadzenia_maszyny_produkcyjnej_po_nazwie(request,nazwa_maszyny_produkcyjnej):
     maszyna_produkcyjna=models.MaszynaProdukcyjna.objects.filter(Maszyna_nazwa=nazwa_maszyny_produkcyjnej).first()
     urzadzenia=maszyna_produkcyjna.urzadzenia_maszyny_produkcyjnej.all()
+
+    for urzadzenie in urzadzenia:
+        # urzadzenie.Status_Polaczenia=is_device_online(urzadzenie.Ip_Adres)
+        urzadzenie.Status_Polaczenia = get_device_status(urzadzenie.Ip_Adres)
+        urzadzenie.save()
+
     return render(request,'urzadzenia_maszyna_produkcyjna.html',{'data':urzadzenia,'nazwa_maszyny_produkcyjnej':nazwa_maszyny_produkcyjnej})
 
-def szczegoly_urzadzenia(request, nazwa_maszyny_produkcyjnej):
-    urzadzenie = models.UrzadzenieMaszyny.objects.filter(
-        Nazwa_urzadzenia=nazwa_maszyny_produkcyjnej
-    ).first()
-    # urzadzenie.status=checktcp.check_tcp(ip=urzadzenie.Ip_Adres,port=502,timeout=1)
-    urzadzenie.status=ping(urzadzenie.Ip_Adres)
-    print(ping(urzadzenie.Ip_Adres))
-    print(urzadzenie)
-    urzadzenie.save()
+# def szczegoly_urzadzenia(request, nazwa_maszyny_produkcyjnej):
+#     urzadzenie = models.UrzadzenieMaszyny.objects.filter(
+#         Nazwa_urzadzenia=nazwa_maszyny_produkcyjnej
+#     ).first()
+#     # urzadzenie.status=checktcp.check_tcp(ip=urzadzenie.Ip_Adres,port=502,timeout=1)
+#     urzadzenie.status=ping(urzadzenie.Ip_Adres)
+#     print(ping(urzadzenie.Ip_Adres))
+#     print(urzadzenie)
+#     urzadzenie.save()
 
-    # return render(request, "urzadzenia_maszyna_produkcyjna.html", {
-    #     "data": data,
-    #     "nazwa_maszyna_produkcyjna": nazwa,
-    # })
+#     # return render(request, "urzadzenia_maszyna_produkcyjna.html", {
+#     #     "data": data,
+#     #     "nazwa_maszyna_produkcyjna": nazwa,
+#     # })
 
-    urzadzenia=models.UrzadzenieMaszyny.objects.all()
-    return render(request,'urzadzenia_maszyna_produkcyjna.html',{'data':urzadzenia,'nazwa_maszyny_produkcyjnej':nazwa_maszyny_produkcyjnej,'urzadzenie':urzadzenie})
+#     urzadzenia=models.UrzadzenieMaszyny.objects.all()
+#     return render(request,'urzadzenia_maszyna_produkcyjna.html',{'data':urzadzenia,'nazwa_maszyny_produkcyjnej':nazwa_maszyny_produkcyjnej,'urzadzenie':urzadzenie})
+
+def dodaj_linie_produkcyjna(request):
+    if request.method=="POST":
+        form=forms.LiniaProdukcyjnaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+    else:
+        form=forms.LiniaProdukcyjnaForm()
+    return render(request,"dodaj_linie_produkcyjna.html",{"form":form})
+
+def dodaj_maszyne_produkcyjna(request):
+    if request.method=="POST":
+        form=forms.MaszynaProdukcyjnaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+    else:
+        form=forms.MaszynaProdukcyjnaForm()
+    return render(request,"dodaj_maszyne_produkcyjna.html",{"form":form})
+
+def dodaj_urzadzenie_maszyny_produkcyjnej(request):
+    if request.method=="POST":
+        form=forms.UrzadzenieMaszynyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+    else:
+        form=forms.UrzadzenieMaszynyForm()
+    return render(request,"dodaj_urzadzenie_maszyny_produkcyjnej.html",{"form":form})
+
+def dodaj_do_bazy_danych_strona(request):
+    return render(request,'dodawanie_do_bazy_danych.html')
+
+def sprawdz_status_polaczenia(request):
+    pass
