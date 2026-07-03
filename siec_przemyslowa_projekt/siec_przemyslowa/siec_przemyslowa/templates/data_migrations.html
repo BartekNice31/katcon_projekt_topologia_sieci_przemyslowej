@@ -23,5 +23,8 @@ MIGRACJA DANYCH-USTAWIENIA
 </br>
 </br>
 <h3>KOMUNIKATY:</h3>
-{{message_github}}
+{%if message_github %}
+    <p>Komunikat github:</p>
+    {{message_github}}
+{%endif%}
 {%endblock%}
