@@ -160,5 +160,5 @@ def edytuj_urzadzenie_maszyny_produkcyjnej(request,id):
 def usun_urzadzenie_maszyny_produkcyjnej(request,id):
     urzadzenie_maszyny_produkcyjnej_do_usuniecia=models.UrzadzenieMaszyny.objects.get(id=id)
     urzadzenie_maszyny_produkcyjnej_do_usuniecia.delete()
-    return redirect('wyswietl_linie_produkcyjne')
+    return render(request,'wyswietl_linie_produkcyjne')
 

@@ -16,19 +16,52 @@ DRUKARKI ETYKIET-BAZA DANYCH
 <h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH-DRUKARKI</h1>
 <h3>MENU</h3>
 
-<div class="options-box">
-    <a href="" class="btn button_class_home">
-        WYŚWIETL DOSTĘPNE DRUKARKI
-    </a>
-    <a href="" class="btn button_class_home">
-        DODAJ DRUKARKĘ
-    </a>
-    <a href="" class="btn button_class_home">
-        EDYTUJ DRUKARKĘ
-    </a>
-    <a href="" class="btn button_class_home">
-        USUŃ DRUKARKĘ
-    </a>
-</div>
+<table class="production-table">
+    <thead>
+        <tr>
+            <th>Nazwa drukarki</th>
+            <th>Ip drukarki</th>
+            <th>Status połączenia</th>
+            <th>Model drukarki</th>
+            <th>Modyfikuj</th>
+            <th>Usuń</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{d.name}}</td>
+            <td>{{d.ip}}</td>
+            <td>
+                {% if d.connected %}
+                    🟢 Drukarka online
+                {% else %}
+                    🔴 Drukarka offline
+                {% endif %} 
+            </td>
+            <td>
+                {{d.model}}
+            </td>
+            <td>
+                <a href="{% url 'edit_printer' d.id%}">Modyfikuj</a>
+            </td>
+            <td>
+                <a href="{% url 'remove_printer' d.id %}">Usuń</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
+</br>
+</br>
+<a href="{%url 'add_new_printer' %}" class="btn button_class_add_new_printer">
+    Dodaj nową drukarkę
+</a>
+<a href="{% url 'home_page' %}" class="btn button_back_to_main">
+    Strona główna
+</a>
+<a href="{% url 'printers_home_page' %}" class="btn button_back_to_main">
+    Powrót
+</a>
 {%endblock%}

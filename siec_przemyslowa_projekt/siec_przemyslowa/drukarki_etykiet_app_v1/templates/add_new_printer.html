@@ -3,7 +3,7 @@
 {% load django_bootstrap5 %}
 
 {%block title%}
-DRUKARKI ETYKIET-BAZA DANYCH-MODYFIKACJA DANYCH
+DRUKARKI ETYKIET-BAZA DANYCH-DODAWANIE NOWEJ DRUKARKI
 {%endblock%}
 
 {%block header%}
@@ -13,12 +13,14 @@ DRUKARKI ETYKIET-BAZA DANYCH-MODYFIKACJA DANYCH
 {%endblock%}
 
 {%block content%}
-<h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH-MODYFIKACJA DANYCH</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" value="Zapisz">Zapisz Ustawienia Drukarki</button>
-    </form>
+<h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH-DRUKARKI</h1>
+<h3>DODAJ DRUKARKĘ:</h3>
+<form  method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    </br>
+    <input type="submit" value="Dodaj nową drukarkę">
+</form>
 </br>
 </br>
 <a href="{% url 'printers_home_page' %}" class="btn button_back_to_main">

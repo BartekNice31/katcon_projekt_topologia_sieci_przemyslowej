@@ -22,6 +22,8 @@ DRUKARKI ETYKIET-LISTA DRUKAREK
             <th>Nazwa drukarki</th>
             <th>Ip drukarki</th>
             <th>Status połączenia</th>
+            <th>Modyfikuj</th>
+            <th>Usuń</th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +37,12 @@ DRUKARKI ETYKIET-LISTA DRUKAREK
                 {% else %}
                     🔴 Drukarka offline
                 {% endif %} 
+            </td>
+            <td>
+                <a href="">Modyfikuj</a>
+            </td>
+            <td>
+                <a href="">Usuń</a>
             </td>
         </tr>
         {% endfor %}

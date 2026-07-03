@@ -12,6 +12,20 @@
   width: auto;
 }
 
+.button_class_add_new_printer {
+  background-color: rgb(9, 194, 9);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
+.button_class_add_new_printer:hover {
+  background-color: rgb(148, 221, 13);
+  color:rgb(0, 0, 0);
+  display: inline-block;
+  width: auto;
+}
+
 .button_class_bazadanych{
   background-color: rgb(88, 88, 255);
   color:rgb(255, 255, 255);
@@ -54,3 +68,31 @@
     width: 800px;
     height: 200px;
 }  
+
+.production-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px auto;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0,0,0,.2);
+}
+
+.production-table th {
+    background: #0056b3;
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+.production-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.production-table tr:nth-child(even) {
+    background: #f5f5f5;
+}
+
+.production-table tr:hover {
+    background: #dbeeff;
+}

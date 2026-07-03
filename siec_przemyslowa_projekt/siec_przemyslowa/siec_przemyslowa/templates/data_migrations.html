@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% load django_bootstrap5 %}
+{%block title%}
+MIGRACJA DANYCH-USTAWIENIA
+
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>MIGRACJA DANYCH</h1>
+</br>
+    <a href="{% url 'aktualizuj_github' %}" class="btn button_class_bazadanych">
+        MIGRACJA GITHUB
+    </a>
+{%endblock%}

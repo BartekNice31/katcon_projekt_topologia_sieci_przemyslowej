@@ -1,4 +1,3 @@
-
 {%extends 'base.html'%}
 {% load static %}
 
@@ -16,9 +15,7 @@ SIEĆ PRZEMYSŁOWA KATCON
 {%block content%}
 <h1>SIEĆ PRZEMYSŁOWA KATCON-STRONA GŁÓWNA</h1>
 <h2>Witaj w aplikacji do przeglądu sieci przemysłowej.</h2>
-</br>
-</br>
-</br>
+</br> 
 <div class="menu-box">
     <h3>Menu</h3>
     <!--{% bootstrap_button "INFORMACJE" button_type="submit" button_class="button_class_informacje" %}-->
@@ -34,7 +31,9 @@ SIEĆ PRZEMYSŁOWA KATCON
     <a href="{% url 'printers_home_page' %}" class="btn button_class_bazadanych">
         DRUKARKI ETYKIET
     </a>
-</div>
-
+    <a href="{% url 'migracja_danych' %}" class="btn button_class_bazadanych">
+        MIGRACJA DANYCH
+    </a>
+</div> 
 {%endblock%}
 
