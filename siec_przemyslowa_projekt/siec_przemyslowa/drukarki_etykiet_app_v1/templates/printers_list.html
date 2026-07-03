@@ -1,0 +1,49 @@
+{% extends 'base_printers.html' %}
+{% load static %} 
+{% load django_bootstrap5 %}
+
+{%block title%}
+DRUKARKI ETYKIET-LISTA DRUKAREK
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>APLIKACJA DRUKARKI ETYKIET-LISTA DRUKAREK</h1>
+<h3>Lista dostępnych drukarek</h3>
+ 
+<table class="production-table">
+    <thead>
+        <tr>
+            <th>Nazwa drukarki</th>
+            <th>Ip drukarki</th>
+            <th>Status połączenia</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{d.name}}</td>
+            <td>{{d.ip}}</td>
+            <td>
+                {% if d.connected %}
+                    🟢 Drukarka online
+                {% else %}
+                    🔴 Drukarka offline
+                {% endif %} 
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</br>
+<a href="{% url 'main_page_application' %}" class="btn button_class_home">
+    POWRÓT DO STRONY GŁÓWNEJ
+</a>
+
+{%endblock%}

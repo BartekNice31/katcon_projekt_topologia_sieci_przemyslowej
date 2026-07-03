@@ -8,3 +8,6 @@ def printers_home_page(request):
 
 def database_printers_page(request):
     return render(request,'database_printers.html')
+
+def show_printers_page(request):
+    return render(request,'printers_list.html')
