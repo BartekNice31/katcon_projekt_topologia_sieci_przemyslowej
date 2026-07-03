@@ -1,0 +1,18 @@
+{% extends 'base_printers.html' %}
+{% load static %} 
+{% load django_bootstrap5 %}
+
+{%block title%}
+DRUKARKI ETYKIET-BAZA DANYCH
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH-DRUKARKI</h1>
+<h3>MENU</h3>
+{%endblock%}
