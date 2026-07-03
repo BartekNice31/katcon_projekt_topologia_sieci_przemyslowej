@@ -9,3 +9,4 @@ django-extensions
 ipython
 django-bootstrap5 
 django-extensions
+scapy

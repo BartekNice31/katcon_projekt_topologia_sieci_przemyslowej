@@ -23,5 +23,6 @@ urlpatterns = [
     path('',views.home,name='home_page'),
     path('database/', views.database_main, name='database_main_page'),
     path('',include('siec_przemyslowa_app_v1.urls')),
-    path('informations/',views.informacje_o_aplikacji,name='informations')
+    path('informations/',views.informacje_o_aplikacji,name='informations'),
+    path('',include('drukarki_etykiet_app_v1.urls')),
 ]

@@ -21,14 +21,18 @@ LINIE PRODUKCYJNE
             <th>Nazwa maszyny</th>
             <th>Linia produkcyjna</th>
             <th>Opis</th>
+            <th>Edytuj</th>
+            <th>Usuń</th>
         </tr>
     </thead>
     <tbody>
-        {% for linia in data %}
+        {% for maszyna in data %}
         <tr>
-            <td> <a href="{% url 'wyswietl_urzadzenia_maszyny_produkcyjnej' linia.Maszyna_nazwa%}">{{ linia.Maszyna_nazwa }}</a></td>
-            <td>{{ linia.Linia_produkcyjna }}</td>
-            <td>{{ linia.Opis }}</td>
+            <td> <a href="{% url 'wyswietl_urzadzenia_maszyny_produkcyjnej' maszyna.Maszyna_nazwa%}">{{ maszyna.Maszyna_nazwa }}</a></td>
+            <td>{{ maszyna.Linia_produkcyjna }}</td>
+            <td>{{ maszyna.Opis }}</td>
+            <td> <a href="{% url 'edytuj_maszyne_produkcyjna_form' maszyna.id %}">Edytuj</a></td>
+            <td> <a href="{% url 'usun_maszyne_produkcyjna' maszyna.id %}">Usuń</a></td>
         </tr>
         {% endfor %}
     </tbody>

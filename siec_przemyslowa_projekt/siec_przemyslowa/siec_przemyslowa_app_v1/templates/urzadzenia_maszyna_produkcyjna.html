@@ -24,13 +24,15 @@ URZĄDZENIA MASZYNA PRODUKCYJNA {{nazwa_maszyny_produkcyjnej}}
             <th>Maszyna produkcyjna</th>
             <th>Opis urządzenia</th>
             <th>Status Polaczenia</th>
+            <th>Edytuj</th>
+            <th>Usuń</th>
         </tr>
     </thead>
     <tbody>
         {% for urzadzenie in data %}
         <tr>
             <td>{{ urzadzenie.Nazwa_urzadzenia }}</a></td>
-            <td><a href="">{{ urzadzenie.Ip_Adres }}</a></td>
+            <td>{{ urzadzenie.Ip_Adres }}</a></td>
             <td>{{ urzadzenie.get_Rodzaj_Urzadzenia_display }}</td>
             <td>{{urzadzenie.Maszyna_produkcyjna}}</td>
             <td>{{urzadzenie.Opis}}</td>
@@ -40,6 +42,12 @@ URZĄDZENIA MASZYNA PRODUKCYJNA {{nazwa_maszyny_produkcyjnej}}
                 {% else %}
                     🔴 Offline
                 {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'edytuj_urzadzenie_maszyny_produkcyjnej' urzadzenie.id %}">Edytuj</a>
+            </td>
+            <td>
+                <a href="{% url 'usun_urzadzenie_maszyny_produkcyjnej' urzadzenie.id%}">Usuń</a>
             </td>
             </tr>
         {% endfor %}

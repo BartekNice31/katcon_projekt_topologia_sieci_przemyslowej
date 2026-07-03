@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_extensions",
     'django_bootstrap5',
-    'siec_przemyslowa_app_v1',
-    "django_extensions"
+    'siec_przemyslowa_app_v1',  
+    'drukarki_etykiet_app_v1' 
 ]
 
 MIDDLEWARE = [
@@ -131,5 +132,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "siec_przemyslowa" / "static",
     BASE_DIR / "siec_przemyslowa_app_v1" / "static",
+    BASE_DIR / "drukarki_etykiet_app_v1" / "static",
     BASE_DIR/'static'
 ]

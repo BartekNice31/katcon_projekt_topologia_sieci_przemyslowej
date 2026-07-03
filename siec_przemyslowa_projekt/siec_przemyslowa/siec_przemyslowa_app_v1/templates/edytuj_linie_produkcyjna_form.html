@@ -1,0 +1,26 @@
+{%extends 'base_siec_przemyslowa.html'%}
+
+{% load static %}
+{% block production_lines_stylesheet_css %}
+{%endblock%}
+<link rel="stylesheet" href="{% static 'css/production_lines_stylesheet.css' %}">
+ 
+
+{% block title %}
+EDYTUJ LINIĘ PRODUKCYJNĄ
+{% endblock %}
+
+{% block header %}
+<a href="{% url 'main_page_application' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+<h1>BAZA DANYCH-EDYCJA LINII PRODUKCYJNEJ {{form.Nazwa_linii}}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" value="Zapisz">Zapisz</button>
+    </form>
+{% endblock %}

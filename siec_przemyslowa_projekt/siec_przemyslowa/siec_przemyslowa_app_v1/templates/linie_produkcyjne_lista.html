@@ -23,6 +23,8 @@ LINIE PRODUKCYJNE
             <th>Nazwa linii</th>
             <th>Strefa</th>
             <th>Opis</th>
+            <th>Edytuj Linię Produkcyjną</th>
+            <th>Usuń Linię Produkcyjną</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +33,8 @@ LINIE PRODUKCYJNE
             <td> <a href="{% url 'wyswietl_maszyny_linii_produkcyjnej_po_nazwie' linia.Nazwa_linii %}">{{ linia.Nazwa_linii }}</a></td>
             <td>{{ linia.get_Strefa_linia_produkcyjna_display }}</td>
             <td>{{ linia.Opis }}</td>
+            <td> <a href="{% url 'edytuj_linie_produkcyjna' linia.id %}">EDYTUJ</a></td>
+            <td> <a href="{% url 'usun_linie_produkcyjna' linia.id %}">USUŃ</a></td>
         </tr>
         {% endfor %}
     </tbody>

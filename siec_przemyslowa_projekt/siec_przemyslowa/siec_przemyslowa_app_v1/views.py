@@ -1,6 +1,6 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from . import models
-from .utils import  is_device_online
+from .utils import  is_device_online,arp_ping
 from . import checktcp
 from . import forms
 from django.http import HttpResponseRedirect,HttpResponse,HttpRequest
@@ -42,6 +42,10 @@ def wyswietl_urzadzenia_maszyny_produkcyjnej_po_nazwie(request,nazwa_maszyny_pro
     for urzadzenie in urzadzenia:
         # urzadzenie.Status_Polaczenia=is_device_online(urzadzenie.Ip_Adres)
         urzadzenie.Status_Polaczenia = get_device_status(urzadzenie.Ip_Adres)
+        # print(arp_ping(urzadzenie.Ip_Adres)["online"])
+        # print(arp_ping(urzadzenie.Ip_Adres)["ip"])
+        # print(arp_ping(urzadzenie.Ip_Adres)["mac"])
+        # urzadzenie.Status_Polaczenia=arp_ping(urzadzenie.Ip_Adres)["online"]
         urzadzenie.save()
 
     return render(request,'urzadzenia_maszyna_produkcyjna.html',{'data':urzadzenia,'nazwa_maszyny_produkcyjnej':nazwa_maszyny_produkcyjnej})
@@ -97,5 +101,64 @@ def dodaj_urzadzenie_maszyny_produkcyjnej(request):
 def dodaj_do_bazy_danych_strona(request):
     return render(request,'dodawanie_do_bazy_danych.html')
 
-def sprawdz_status_polaczenia(request):
-    pass
+def edytuj_linie_produkcyjna(request,id):
+    linia_produkcyjna_do_edycji=get_object_or_404(models.LiniaProdukcyjna,id=id)
+    if request.method=="POST":
+        form=forms.LiniaProdukcyjnaForm(request.POST,instance=linia_produkcyjna_do_edycji)
+        if form.is_valid():
+            form.save()
+            return redirect('wyswietl_linie_produkcyjne')
+    else:
+        form=forms.LiniaProdukcyjnaForm(instance=linia_produkcyjna_do_edycji)
+    return render(
+        request
+        ,'edytuj_linie_produkcyjna_form.html'
+        ,{'form':form}
+    )
+
+def usun_linie_produkcyjna(request,id):
+    # linia_produkcyjna_do_usuniecia=get_object_or_404(models.LiniaProdukcyjna)
+    linia_produkcyjna_do_usuniecia=models.LiniaProdukcyjna.objects.get(id=id)
+    linia_produkcyjna_do_usuniecia.delete()
+    return redirect('wyswietl_linie_produkcyjne')
+
+def edytuj_maszyne_produkcyjna(request,id):
+    maszyna_produkcyjna_do_edycji=models.MaszynaProdukcyjna.objects.get(id=id)
+    if request.method=="POST":
+        form=forms.MaszynaProdukcyjnaForm(request.POST,instance=maszyna_produkcyjna_do_edycji)
+        if form.is_valid():
+            form.save()
+            return redirect('wyswietl_linie_produkcyjne')
+    else:
+        form=forms.MaszynaProdukcyjnaForm(instance=maszyna_produkcyjna_do_edycji)
+    return render(
+        request
+        ,'edytuj_maszyne_produkcyjna.html'
+        ,{'form':form}
+    )
+
+def usun_maszyne_produkcyjna(request,id):
+    maszyna_produkcyjna_do_usuniecia=models.MaszynaProdukcyjna.objects.get(id=id)
+    maszyna_produkcyjna_do_usuniecia.delete()
+    return redirect('wyswietl_linie_produkcyjne')
+
+def edytuj_urzadzenie_maszyny_produkcyjnej(request,id):
+    urzadzenie_maszyny_produkcyjnej_do_edycji=models.UrzadzenieMaszyny.objects.get(id=id)
+    if request.method=="POST":
+        form=forms.UrzadzenieMaszynyForm(request.POST,instance=urzadzenie_maszyny_produkcyjnej_do_edycji)
+        if form.is_valid():
+            form.save()
+            return redirect('wyswietl_linie_produkcyjne')
+    else:
+        form=forms.UrzadzenieMaszynyForm(instance=urzadzenie_maszyny_produkcyjnej_do_edycji)
+    return render(
+        request
+        ,'edytuj_urzadzenie_maszyny_produkcyjnej.html'
+        ,{'form':form}
+    )
+
+def usun_urzadzenie_maszyny_produkcyjnej(request,id):
+    urzadzenie_maszyny_produkcyjnej_do_usuniecia=models.UrzadzenieMaszyny.objects.get(id=id)
+    urzadzenie_maszyny_produkcyjnej_do_usuniecia.delete()
+    return redirect('wyswietl_linie_produkcyjne')
+
