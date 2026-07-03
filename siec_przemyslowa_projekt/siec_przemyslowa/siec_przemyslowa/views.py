@@ -23,4 +23,4 @@ def migracja_danych(request):
 def aktualizuj_github(request): 
     subprocess.run(["cmd.exe", "/c", str(GITHUB_FILE)], text=True)
     message='MIGRACJA DO SERWERA GITHUB ZAKOŃCZONA.'
-    return render(request,'data_migrations.html',{'message':message})
+    return render(request,'data_migrations.html',{'message_github':message})
