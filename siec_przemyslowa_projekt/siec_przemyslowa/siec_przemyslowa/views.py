@@ -21,6 +21,8 @@ def migracja_danych(request):
     return render(request,'data_migrations.html')
 
 def aktualizuj_github(request): 
+    #C:\Users\bNicewicz\Desktop\projekty\projekty_python\django_siec_przemyslowa\github_send.bat
+    print(GITHUB_FILE)
     subprocess.run(["cmd.exe", "/c", str(GITHUB_FILE)], text=True)
     message='MIGRACJA DO SERWERA GITHUB ZAKOŃCZONA.'
     return render(request,'data_migrations.html',{'message_github':message})
