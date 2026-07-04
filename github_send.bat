@@ -1,7 +1,7 @@
 @echo off
 
-for /f %%i in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd HH:mm:ss"') do set DATETIME=%%i
+cd /d %~dp0
 
-git add .
-git commit -m "Commit %DATETIME% + aplikacja etykiet"
-git push -u origin main
+git add -A
+git commit -m "Auto commit"
+git push
