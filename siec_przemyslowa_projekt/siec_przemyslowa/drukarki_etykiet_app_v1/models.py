@@ -77,6 +77,7 @@ class Label(models.Model):
     name=models.CharField(max_length=100
                         ,null=False
                         ,blank=False
+                        ,unique=True
                         ,validators=[
                             MinLengthValidator(10)
                         ])

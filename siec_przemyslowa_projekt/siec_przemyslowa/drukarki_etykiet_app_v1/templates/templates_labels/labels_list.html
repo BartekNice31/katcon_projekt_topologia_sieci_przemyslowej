@@ -1,0 +1,40 @@
+{% extends 'base_printers.html' %}
+{% load static %} 
+{% load django_bootstrap5 %}
+
+{%block title%}
+DRUKARKI ETYKIET-LISTA ETYKIET
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>APLIKACJA DRUKARKI ETYKIET-LISTA ETYKIET</h1>
+<h3>Lista dostępnych etykiet</h3>
+ 
+<table class="production-table">
+    <thead>
+        <tr>
+            <th>Nazwa Etykiety</th>
+             
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{d.name}}</td> 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</br>
+<a href="{% url 'main_page_application' %}" class="btn button_class_home">
+    POWRÓT DO STRONY GŁÓWNEJ
+</a>
+
+{%endblock%}

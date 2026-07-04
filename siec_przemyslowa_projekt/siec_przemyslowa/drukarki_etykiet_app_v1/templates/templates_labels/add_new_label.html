@@ -14,13 +14,13 @@ DRUKARKI ETYKIET-BAZA DANYCH-DODAWANIE NOWEJ DRUKARKI
 
 {%block content%}
 <h1>APLIKACJA DRUKARKI ETYKIET </h1>
-<h2>BAZA DANYCH-DODAWANIE NOWEJ DRUKARKI</h2>
-<h3>DODAJ DRUKARKĘ:</h3>
+<h2>BAZA DANYCH-DODAWANIE NOWEJ ETYKIETY</h2>
+<h3>DODAJ ETYKIETĘ:</h3>
 <form  method="post">
     {% csrf_token %}
     {{ form.as_p }}
     </br>
-    <input type="submit" value="Dodaj nową drukarkę">
+    <input type="submit" value="Dodaj nową etykietę">
 </form>
 </br>
 </br>

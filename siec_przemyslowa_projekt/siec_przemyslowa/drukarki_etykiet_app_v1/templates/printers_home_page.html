@@ -13,21 +13,27 @@ DRUKARKI ETYKIET
 {%endblock%}
 
 {%block content%}
-<h1>APLIKACJA DRUKARKI ETYKIET-STRONA DOMOWA</h1>
+<h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH</h1>
 <h3>Drukarki Etykiet-Menu</h3>
 <div class="options-box">
     
-    <a href="{% url 'database_printers_page' %}" class="btn button_class_home">
-        BAZA DANYCH
+    <a href="{% url 'database_printers_page' %}" class="btn button_class_bazadanych">
+        BAZA DANYCH-DRUKARKI ETYKIET
     </a>
-    <a href="" class="btn button_class_home">
+</div>
+
+<h3>Etykiety-Menu</h3>
+<div class="options-box">
+    <a href="{% url 'database_labels' %}" class="btn button_class_bazadanych">
+        BAZA DANYCH-ETYKIETY
+    </a>
+    <a href="" class="btn button_class_bazadanych">
         WYDRUKUJ ETYKIETE
     </a>
 </div>
+    
 </br>
 <a href="{% url 'main_page_application' %}" class="btn button_class_home">
     POWRÓT DO STRONY GŁÓWNEJ
 </a>
-
-<h3>Etykiety-Menu</h3>
 {%endblock%}

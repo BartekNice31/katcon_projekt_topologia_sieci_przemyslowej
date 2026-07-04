@@ -27,7 +27,7 @@
 }
 
 .button_class_bazadanych{
-  background-color: rgb(88, 88, 255);
+  background-color: rgb(219, 135, 8);
   color:rgb(255, 255, 255);
   display: inline-block;
   width: auto;
@@ -81,7 +81,7 @@
     background: #0056b3;
     color: white;
     padding: 14px;
-    text-align: left;
+    text-align: center;
 }
 
 .production-table td {
@@ -95,4 +95,9 @@
 
 .production-table tr:hover {
     background: #dbeeff;
+}
+ 
+.production-table th,
+.production-table td {
+    border-right: 2px solid rgb(255, 255, 255);
 }

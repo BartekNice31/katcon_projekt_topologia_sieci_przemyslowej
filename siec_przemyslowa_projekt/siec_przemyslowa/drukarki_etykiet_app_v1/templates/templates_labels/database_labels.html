@@ -1,0 +1,51 @@
+{% extends 'base_printers.html' %}
+{% load static %} 
+{% load django_bootstrap5 %}
+
+{%block title%}
+BAZA DANYCH ETYKIET
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH ETYKIET</h1>
+<h3>Baza danych Etykiet-Menu</h3>
+ 
+<table class="production-table">
+    <thead>
+        <tr>
+            <th>Nazwa Etykiety</th>
+            <th>Wzór Etykiety</th>
+            <th>Edytuj Etykietę</th>
+            <th>Usuń Etykietę</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+        <tr>
+            <td>{{d.name}}</td> 
+            <td>{{d.pattern}}</td> 
+            <td><a href="">Modyfikuj Etykietę</a></td>
+            <td><a href="{% url 'delete_label' d.id%}">Usuń Etykietę</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</br>
+<a href="{% url 'add_new_label' %}" class="btn button_class_bazadanych">
+    Dodaj nową etykietę
+</a>  
+<a href="{% url 'main_page_application' %}" class="btn button_class_home">
+    STRONA GŁÓWNA
+</a> 
+<a href="{% url 'printers_home_page' %}" class="btn button_class_home">
+    POWRÓT DO MENU DRUKARKI/ETYKIETY
+</a>
+
+{%endblock%}

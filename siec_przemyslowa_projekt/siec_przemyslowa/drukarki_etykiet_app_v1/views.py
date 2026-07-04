@@ -53,3 +53,36 @@ def remove_printer(request,id):
     printer_to_remove=models.Printer.objects.get(id=id)
     printer_to_remove.delete()
     return redirect('database_printers_page')
+
+def database_labels(request):
+    labels=models.Label.objects.all()
+    return render(request,'templates_labels/database_labels.html',{'data':labels})
+
+def add_new_label(request):
+    if request.method=="POST":
+        form=forms.LabelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('database_labels')
+    else:
+        form=forms.LabelForm()
+    return render(request,'templates_labels/add_new_label.html',{"form":form})
+
+def edit_label(request,id):
+    label_to_edit=models.Label.objects.get(id=id)
+    if request.method=="POST":
+        form=forms.PrinterForm(request.POST,instance=label_to_edit)
+        form.save()
+        return redirect('database_labels')
+    else:
+        form=forms.PrinterForm(instance=label_to_edit)
+    return render(
+        request
+        ,'edit_label.html'
+        ,{'form':form}
+    )
+
+def delete_label(request,id):
+    label_to_remove=models.Label.objects.get(id=id)
+    label_to_remove.delete()
+    return redirect('database_labels')
