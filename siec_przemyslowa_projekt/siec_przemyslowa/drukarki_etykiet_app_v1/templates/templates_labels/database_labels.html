@@ -21,6 +21,7 @@ BAZA DANYCH ETYKIET
         <tr>
             <th>Nazwa Etykiety</th>
             <th>Wzór Etykiety</th>
+            <th>Typ Etykiety</th>
             <th>Edytuj Etykietę</th>
             <th>Usuń Etykietę</th>
             <th>Drukuj Etykietę</th>
@@ -30,7 +31,8 @@ BAZA DANYCH ETYKIET
         {% for d in data %}
         <tr>
             <td>{{d.name}}</td> 
-            <td>{{d.get_pattern_label_display}}</td> 
+            <td>{{d.pattern}}</td> 
+            <td>{{d.type_code}}</td>
             <td><a href="{% url 'edit_label' d.id%}">Modyfikuj Etykietę</a></td>
             <td><a href="{% url 'delete_label' d.id%}">Usuń Etykietę</a></td>
             <td><a href="">Drukuj Etykietę</a></td>

@@ -95,11 +95,13 @@ class Label(models.Model):
                             ,validators=[
                                 MinLengthValidator(10)
                             ])
-    pattern_label=models.CharField(choices=Patterns.choices,default=Patterns.DATAMATRIX)
+    # pattern_label=models.CharField(choices=Patterns.choices,default=Patterns.DATAMATRIX)
+    type_code=models.CharField(choices=TypeCode.choices,default=TypeCode.UNKNOWN)
     class Meta:
         verbose_name='Etykieta'
         verbose_name_plural='Etykiety'
         db_table='db_etykiety'
+        ordering=['id']
 
     def __str__(self):
         return f"Etykieta: {self.name}"

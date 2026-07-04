@@ -22,3 +22,6 @@ class LiniaProdukcyjnaStrefa(models.IntegerChoices):
     STF5=24,'STF5'
     STF6=25,'STF6'
     STF7=26,'STF7'
+
+    #SERWERY
+    SERWER_PRODUCTION=30,'SERWER_PRODUKCJI'

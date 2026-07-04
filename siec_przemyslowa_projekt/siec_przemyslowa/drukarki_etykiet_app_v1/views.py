@@ -120,7 +120,7 @@ def print_label_from_zebra(request):
             # 🔥 TU LOGIKA DRUKU (na razie print)
             print(f"DRUKUJĘ {label.name} na {printer.name} o adresie: {printer.ip}")
             print(label.pattern.replace('**Wpisz_tutaj**',barcode))
-            # print_label_program.print_label(zpl=label.pattern.replace('**Wpisz_tutaj**',barcode),printer_ip=printer.ip,port=9100)
+            print_label_program.print_label(zpl=label.pattern.replace('**Wpisz_tutaj**',barcode),printer_ip=printer.ip,port=9100)
             # tutaj później np. ZPL / socket / API drukarki
             return render(request, "templates_printers/print_label_zebra_scanner.html", {
                 "form": form,
