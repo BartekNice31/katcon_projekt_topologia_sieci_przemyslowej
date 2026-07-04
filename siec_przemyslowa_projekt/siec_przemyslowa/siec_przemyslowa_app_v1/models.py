@@ -76,8 +76,7 @@ class UrzadzenieMaszyny(models.Model):
                             ,validators=[
                                 MinLengthValidator(7)
                             ])
-    Rodzaj_Urzadzenia=models.IntegerField(choices=TypUrzadzenia.choices,null=False,blank=False,unique=False
-                                          ,max_length=255)
+    Rodzaj_Urzadzenia=models.IntegerField(choices=TypUrzadzenia.choices,null=False,blank=False,unique=False)
     Maszyna_produkcyjna=models.ForeignKey(MaszynaProdukcyjna,on_delete=models.CASCADE,null=False
                                         ,unique=False,blank=False,related_name="urzadzenia_maszyny_produkcyjnej")
     Opis=models.CharField(null=False,blank=True,max_length=1000,default='')

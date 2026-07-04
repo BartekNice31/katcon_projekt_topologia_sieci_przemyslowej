@@ -24,10 +24,22 @@ MIGRACJA DANYCH-USTAWIENIA
     </a>
 </br>
 </br>
-{%if message_github or  message_db %}
+{%if message_github or result_make_migrations_stdout or result_make_migrations_sderr or result_migrate_stdout or result_migrate_stderr%}
     <h3>KOMUNIKATY:</h3>
     {%if message_github %}
         <p>Komunikat github: {{message_github}}</p>    
     {%endif%}
-{%endif%}
+    {%if result_make_migrations_stdout %}
+        <p>Komunikat makemigrations: {{result_make_migrations_stdout}}</p> 
+    {%endif%}
+    {%if result_make_migrations_sderr %}
+        <p>Komunikat błędu makemigrations: {{result_make_migrations_sderr}}</p> 
+    {%endif%}
+    {%if result_migrate_stdout %}
+        <p>Komunikat migrate: {{result_migrate_stdout}}</p> 
+    {%endif%}
+    {%if result_migrate_stderr %}
+        <p>Komunikat error migrate: {{result_migrate_stderr}}</p> 
+    {%endif%}
+{%endif%} 
 {%endblock%}

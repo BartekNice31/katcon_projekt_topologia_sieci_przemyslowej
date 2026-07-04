@@ -5,7 +5,8 @@ import pathlib
 # Create your views here.
 BASE_DIR=pathlib.Path(__file__).resolve().parent.parent.parent.parent
 GITHUB_FILE=BASE_DIR/'github_send.bat'
-
+VENV_PYTHON=BASE_DIR/'venv'/'Scripts'/'python.exe'
+PROJECT_DIR = BASE_DIR / "siec_przemyslowa_projekt" / "siec_przemyslowa"
 def home(request): 
     # print(GITHUB_FILE) 
     # print(pathlib.Path.exists(GITHUB_FILE))
@@ -51,4 +52,22 @@ def aktualizuj_github(request):
 
 def aktualizuj_bazy_danych(request):
     project_path=pathlib.Path(__file__).resolve().parent.parent
-    return render(request, "data_migrations.html")
+    print(project_path)
+    result_make_migrations = subprocess.run([VENV_PYTHON,"manage.py","makemigrations"],
+                                            cwd=str(PROJECT_DIR),
+                                            capture_output=True,
+                                            text=True)
+    result_migrate=subprocess.run([VENV_PYTHON,"manage.py","migrate"],
+                                cwd=str(PROJECT_DIR),
+                                capture_output=True,
+                                text=True)
+    results=[]
+    results.append(result_make_migrations)
+    results.append(result_migrate)
+
+    return render(request, "data_migrations.html",
+                {'result_make_migrations_stdout':results[0].stdout
+                ,'result_make_migrations_sderr':results[0].stderr
+                ,'result_migrate_stdout':results[1].stdout
+                ,'result_migrate_stderr':results[1].stderr}
+                )
