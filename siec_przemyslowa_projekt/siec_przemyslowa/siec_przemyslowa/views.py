@@ -50,4 +50,5 @@ def aktualizuj_github(request):
     })
 
 def aktualizuj_bazy_danych(request):
-    project_path=""
+    project_path=pathlib.Path(__file__).resolve().parent.parent
+    return render(request, "data_migrations.html")
