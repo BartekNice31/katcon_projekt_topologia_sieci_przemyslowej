@@ -1,0 +1,62 @@
+{% extends 'base_printers.html' %}
+{% load static %} 
+{% load django_bootstrap5 %}
+
+{%block title%}
+DRUKOWANIE ETYKIET-SKANER ZEBRA
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{% block content %}
+
+<h2>Drukowanie etykiet-skaner zebra</h2>
+
+{% if message %}
+    <p style="color: green;">{{ message }}</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn button_class_add_new_printer">Drukuj</button>
+    <button type="button" onclick="clearBarcode()" class="btn button_class_add_new_printer">Wyczyść kod</button>
+    <a href="{% url 'database_labels' %}" class="btn button_class_add_new_printer">
+        Baza etykiet
+    </a>
+    <a id="editLabelBtn" href="#" class="btn button_class_add_new_printer">
+        Edytuj wybraną etykietę
+    </a>
+</form>
+
+<script>
+function clearBarcode() {
+    const barcode = document.getElementById("id_barcode");
+    barcode.value = "";
+    barcode.focus();
+}
+</script> 
+
+<script>
+document.getElementById("id_barcode").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+    }
+});
+</script>
+<script>
+function updateEditLink() {
+    const select = document.getElementById("id_label");
+    const btn = document.getElementById("editLabelBtn");
+
+    btn.href = "/edit_label/" + select.value;
+}
+
+document.getElementById("id_label").addEventListener("change", updateEditLink);
+updateEditLink(); // ustawia link po załadowaniu strony
+</script>
+{% endblock %}

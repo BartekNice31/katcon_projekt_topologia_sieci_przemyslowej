@@ -4,7 +4,11 @@ from django.core.validators import MinLengthValidator
 
 from django.db import models
 
+class Patterns(models.TextChoices):
+    QR="QR", "^XA\n    ^FT25,200^BQN,2,6\n    ^FH\\^FDLA,**Wpisz_Tutaj**^FS\n    ^PQ1,0,1,Y^XZ\n"
+    DATAMATRIX='DATAMATRIX',"^XA\n    ^FT25,190^BXN,8,200,0,0,1,~\n    ^FH\\^FD**Wpisz_tutaj**^FS\n\\^PQ1,0,1,Y^XZ\n"
 
+    UNKNOWN="UNKNOWN","UNKNOWN"
 class TypePrinter(models.TextChoices):
     ZD220D = "ZD220D", "Zebra ZD220d"
     ZD220T = "ZD220T", "Zebra ZD220t"
@@ -72,6 +76,9 @@ class Printer(models.Model):
         verbose_name='Drukarka Etykiet'
         verbose_name_plural='Drukarki Etykiet'
         db_table='db_drukarki'
+
+    def __str__(self):
+        return f"Drukarka: {self.name}--{self.ip}--{self.model}"
     
 class Label(models.Model):
     name=models.CharField(max_length=100
@@ -88,7 +95,11 @@ class Label(models.Model):
                             ,validators=[
                                 MinLengthValidator(10)
                             ])
+    pattern_label=models.CharField(choices=Patterns.choices,default=Patterns.DATAMATRIX)
     class Meta:
         verbose_name='Etykieta'
         verbose_name_plural='Etykiety'
         db_table='db_etykiety'
+
+    def __str__(self):
+        return f"Etykieta: {self.name}"

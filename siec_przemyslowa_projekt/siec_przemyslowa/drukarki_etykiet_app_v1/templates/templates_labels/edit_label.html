@@ -1,0 +1,28 @@
+{% extends 'base_printers.html' %}
+{% load static %} 
+{% load django_bootstrap5 %}
+
+{%block title%}
+ETYKIETY-BAZA DANYCH-MODYFIKACJA DANYCH
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>APLIKACJA DRUKARKI ETYKIET-BAZA DANYCH</h1>
+<h2>MODYFIKACJA DANYCH ETYKIETY</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" value="Zapisz">Zapisz Ustawienia Etykiety</button>
+    </form>
+</br>
+</br>
+<a href="{% url 'printers_home_page' %}" class="btn button_back_to_main">
+    Powrót
+</a>
+{%endblock%}

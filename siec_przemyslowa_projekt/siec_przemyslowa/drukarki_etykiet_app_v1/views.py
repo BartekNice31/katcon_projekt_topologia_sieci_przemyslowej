@@ -4,6 +4,8 @@ from . import utils
 from . import models
 from . import forms
 from . import utils
+from . import print_label_program
+import socket
 # Create your views here.
 
 def printers_home_page(request):
@@ -71,14 +73,14 @@ def add_new_label(request):
 def edit_label(request,id):
     label_to_edit=models.Label.objects.get(id=id)
     if request.method=="POST":
-        form=forms.PrinterForm(request.POST,instance=label_to_edit)
+        form=forms.LabelForm(request.POST,instance=label_to_edit)
         form.save()
         return redirect('database_labels')
     else:
-        form=forms.PrinterForm(instance=label_to_edit)
+        form=forms.LabelForm(instance=label_to_edit)
     return render(
         request
-        ,'edit_label.html'
+        ,'templates_labels/edit_label.html'
         ,{'form':form}
     )
 
@@ -86,3 +88,43 @@ def delete_label(request,id):
     label_to_remove=models.Label.objects.get(id=id)
     label_to_remove.delete()
     return redirect('database_labels')
+
+def print_label(request):
+    form = forms.PrintForm()
+    if request.method == "POST":
+        form = forms.PrintForm(request.POST)
+        if form.is_valid():
+            printer = form.cleaned_data["printer"]
+            label = form.cleaned_data["label"]
+
+            # 🔥 TU LOGIKA DRUKU (na razie print)
+            print(f"DRUKUJĘ {label.name} na {printer.name} o adresie: {printer.ip}")
+            print_label_program.print_label(zpl=label.pattern,printer_ip=printer.ip,port=9100)
+            # tutaj później np. ZPL / socket / API drukarki
+            return render(request, "templates_printers/print_label.html", {
+                "form": form,
+                "message": "Wysłano do drukarki ✔"
+            }) 
+
+    return render(request, "templates_printers/print_label.html", {"form": form})
+
+def print_label_from_zebra(request):
+    form = forms.PrintFormScanner()
+    if request.method == "POST":
+        form = forms.PrintFormScanner(request.POST)
+        if form.is_valid():
+            printer = form.cleaned_data["printer"]
+            label = form.cleaned_data["label"]
+            barcode = form.cleaned_data["barcode"]
+
+            # 🔥 TU LOGIKA DRUKU (na razie print)
+            print(f"DRUKUJĘ {label.name} na {printer.name} o adresie: {printer.ip}")
+            print(label.pattern.replace('**Wpisz_tutaj**',barcode))
+            # print_label_program.print_label(zpl=label.pattern.replace('**Wpisz_tutaj**',barcode),printer_ip=printer.ip,port=9100)
+            # tutaj później np. ZPL / socket / API drukarki
+            return render(request, "templates_printers/print_label_zebra_scanner.html", {
+                "form": form,
+                "message": "Wysłano do drukarki ✔"
+            }) 
+
+    return render(request, "templates_printers/print_label_zebra_scanner.html", {"form": form})

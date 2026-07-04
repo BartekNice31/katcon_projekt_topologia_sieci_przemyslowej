@@ -19,5 +19,8 @@ urlpatterns = [
     path('remove_printer/<int:id>/', views.remove_printer, name='remove_printer'),
     path('database_labels/', views.database_labels, name='database_labels'),
     path('add_new_label/',views.add_new_label,name='add_new_label'),
-    path('delete_label/<int:id>',views.delete_label,name='delete_label')
+    path('delete_label/<int:id>',views.delete_label,name='delete_label'),
+    path('edit_label/<int:id>',views.edit_label,name='edit_label'),
+    path('print_label/',views.print_label,name='print_label'),
+    path('print_label_from_zebra/',views.print_label_from_zebra,name='print_label_from_zebra')
 ]
