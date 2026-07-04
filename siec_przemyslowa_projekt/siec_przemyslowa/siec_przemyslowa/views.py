@@ -36,7 +36,9 @@ def aktualizuj_github(request):
         ["cmd.exe", "/c", str(bat_file)],
         cwd=str(repo_dir),   # 🔥 KLUCZOWE
         capture_output=True,
-        text=True
+        text=True,
+        encoding="utf-8",   # 🔥 KLUCZOWE
+        errors="replace"    # 🔥 zabezpieczenie
     )
 
     print(result.stdout)
