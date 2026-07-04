@@ -30,7 +30,7 @@ def migracja_danych(request):
 def aktualizuj_github(request):
     bat_file = pathlib.Path(r"C:\Users\bNicewicz\Desktop\projekty\projekty_python\django_siec_przemyslowa\github_send.bat")
 
-    repo_dir = pathlib.Path(r"C:\Users\bNicewicz\Desktop\projekty\projekty_python\django_siec_przemyslowa\siec_przemyslowa_projekt\siec_przemyslowa")
+    repo_dir = pathlib.Path(r"C:\Users\bNicewicz\Desktop\projekty\projekty_python\django_siec_przemyslowa")
 
     result = subprocess.run(
         ["cmd.exe", "/c", str(bat_file)],
