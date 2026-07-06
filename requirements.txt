@@ -10,3 +10,4 @@ ipython
 django-bootstrap5 
 django-extensions
 scapy
+python-snap7

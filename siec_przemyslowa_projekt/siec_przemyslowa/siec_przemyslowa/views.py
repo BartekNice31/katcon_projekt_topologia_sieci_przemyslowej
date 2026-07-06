@@ -71,3 +71,4 @@ def aktualizuj_bazy_danych(request):
                 ,'result_migrate_stdout':results[1].stdout
                 ,'result_migrate_stderr':results[1].stderr}
                 )
+

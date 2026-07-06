@@ -6,6 +6,7 @@ from . import forms
 from django.http import HttpResponseRedirect,HttpResponse,HttpRequest
 from django.core.cache import cache
 import time
+from django.contrib import messages
 
 def get_device_status(ip):
     key = f"device_status_{ip}"
@@ -162,3 +163,16 @@ def usun_urzadzenie_maszyny_produkcyjnej(request,id):
     urzadzenie_maszyny_produkcyjnej_do_usuniecia.delete()
     return render(request,'wyswietl_linie_produkcyjne')
 
+def dodaj_sterownik_maszyny_produkcyjnej(request):
+    if request.method=="POST":
+        form=forms.PLCMaszynyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(f"Sterownik: {form.Profinet_name} dodany do sieci")
+            return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+        else:
+            messages.error("Błędnie wypełniony formularz")
+            form=forms.PLCMaszynyForm()
+    return render(request,"templates_sterowniki/dodaj_sterownik_maszyny_produkcyjnej.html",{"form":form})
+    
+        

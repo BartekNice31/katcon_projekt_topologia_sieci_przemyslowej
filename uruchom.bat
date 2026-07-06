@@ -1,3 +1,5 @@
+C:\Users\bNicewicz\Desktop\projekty\projekty_python\django_siec_przemyslowa\venv\Scripts\python.exe -m pip install -r requirements.txt
+
 cd C:\Users\bNicewicz\Desktop\projekty\projekty_python\django_siec_przemyslowa\siec_przemyslowa_projekt\siec_przemyslowa
 dir
 

@@ -6,6 +6,8 @@ from . modele.models_line_productions import *
 from . modele.modele_status_urzadzenia import *
 from . managers.managers_linia_produkcyjna import *
 from . managers.managers_urzadzenia_maszyny import *
+from . modele.modele_hmi import *
+from . modele.modele_plc import *
 from datetime import datetime
 from django.db.models.signals import post_save,pre_save
 from django.dispatch import receiver
@@ -102,3 +104,21 @@ class UrzadzenieMaszyny(models.Model):
 def zapisz_urzadzenie_maszyny_produkcyjnej_po(sender,instance,**kwargs):
     print("Właśnie zapisaliśmy urządzenie maszyny produkcyjnej:")
     print(f"{instance.Nazwa_urzadzenia}")
+
+class PLCMaszyna(models.Model):
+    Ip_Adres=models.CharField(unique=True,null=False,blank=False
+                            ,max_length=17
+                            ,validators=[
+                                MinLengthValidator(7)
+                            ])
+    Profinet_name=models.CharField(unique=True,null=False,blank=False,
+                                   max_length=17
+                                   ,validators=[
+                                       MinLengthValidator(7)
+                                   ])
+    Rack=models.IntegerField(null=False,blank=False,default=0)
+    Slot=models.IntegerField(null=False,blank=False,default=1)
+    Typ_sterownika=models.IntegerField(choices=TypSterownika.choices,null=False,blank=True,default=StatusPolaczenia.OFFLINE)
+    Maszyna_produkcyjna=models.ForeignKey(MaszynaProdukcyjna,on_delete=models.CASCADE,null=False
+                                        ,unique=False,blank=False,related_name="sterowniki_maszyny_produkcyjnej")
+    

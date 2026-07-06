@@ -15,3 +15,8 @@ class UrzadzenieMaszynyForm(forms.ModelForm):
     class Meta:
         model=models.UrzadzenieMaszyny
         fields = "__all__"
+
+class PLCMaszynyForm(forms.ModelForm):
+    class Meta:
+        model=models.PLCMaszyna
+        fields="__all__"

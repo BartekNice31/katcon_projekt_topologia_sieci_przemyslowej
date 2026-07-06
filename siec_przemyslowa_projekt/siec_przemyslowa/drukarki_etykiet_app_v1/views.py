@@ -128,3 +128,4 @@ def print_label_from_zebra(request):
             }) 
 
     return render(request, "templates_printers/print_label_zebra_scanner.html", {"form": form})
+
