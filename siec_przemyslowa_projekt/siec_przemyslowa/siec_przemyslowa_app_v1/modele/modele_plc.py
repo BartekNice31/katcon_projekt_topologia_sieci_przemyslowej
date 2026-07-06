@@ -47,3 +47,5 @@ class TypSterownika(models.IntegerChoices):
 
     # Open Controller
     S7_1500_OPEN_CONTROLLER = 90, "SIMATIC S7-1500 Open Controller"
+
+    UKNOWN=1000,"UNKNOWN CONTROLLER"

@@ -25,6 +25,7 @@ class LiniaProdukcyjna(models.Model):
         verbose_name='Lina Produkcyjna'
         verbose_name_plural='Linie produkcyjne'
         ordering=['Nazwa_linii']
+        db_table='db_linie_produkcyjne'
 
 # @receiver([pre_save],sender=LiniaProdukcyjna)
 # def zapisz_linie_produkcyjna_przed(sender,instance,**kwargs):
@@ -56,6 +57,7 @@ class MaszynaProdukcyjna(models.Model):
         verbose_name='Maszyna produkcyjna'
         verbose_name_plural='Maszyny produkcyjne'
         ordering=['Maszyna_nazwa']
+        db_table='db_maszyny_produkcyjne'
 
 # @receiver([pre_save],sender=MaszynaProdukcyjna)
 # def zapisz_maszyne_produkcyjna_przed(sender,instance,**kwargs):
@@ -93,6 +95,7 @@ class UrzadzenieMaszyny(models.Model):
         verbose_name='Urządzenie w maszynie'
         verbose_name_plural='Urządzenia w maszynie'
         ordering=['Ip_Adres']
+        db_table='db_urzadzenia_maszyn'
 
 # @receiver([pre_save],sender=UrzadzenieMaszyny)
 # def zapisz_urzadzenie_maszyny_produkcyjnej_przed(sender,instance,**kwargs):
@@ -118,7 +121,12 @@ class PLCMaszyna(models.Model):
                                    ])
     Rack=models.IntegerField(null=False,blank=False,default=0)
     Slot=models.IntegerField(null=False,blank=False,default=1)
-    Typ_sterownika=models.IntegerField(choices=TypSterownika.choices,null=False,blank=True,default=StatusPolaczenia.OFFLINE)
+    Typ_sterownika=models.IntegerField(choices=TypSterownika.choices,null=False,blank=True,default=TypSterownika.UKNOWN)
     Maszyna_produkcyjna=models.ForeignKey(MaszynaProdukcyjna,on_delete=models.CASCADE,null=False
                                         ,unique=False,blank=False,related_name="sterowniki_maszyny_produkcyjnej")
-    
+    Status_Polaczenia=models.BooleanField(null=True,blank=True,default=True)
+    class Meta:
+        verbose_name='Sterownik PLC'
+        verbose_name_plural='Sterowniki PLC'
+        ordering=['Ip_Adres']
+        db_table='db_sterowniki_plc'
