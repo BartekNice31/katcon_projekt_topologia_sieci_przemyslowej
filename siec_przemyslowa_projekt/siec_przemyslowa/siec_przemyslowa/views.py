@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 import subprocess
 import pathlib
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 BASE_DIR=pathlib.Path(__file__).resolve().parent.parent.parent.parent
@@ -72,3 +73,8 @@ def aktualizuj_bazy_danych(request):
                 ,'result_migrate_stderr':results[1].stderr}
                 )
 
+def get_all_users(request):
+    User=get_user_model()
+    users=User.objects.all()
+
+    return render(request,'users.html',{'users':users})

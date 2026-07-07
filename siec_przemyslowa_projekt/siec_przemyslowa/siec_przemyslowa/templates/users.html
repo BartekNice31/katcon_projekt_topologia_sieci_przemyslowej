@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% load django_bootstrap5 %}
+{%block title%}
+UŻYTKOWNICY APLIKACJI
+
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'home_page' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>UŻYTKOWNICY APLIKACJI</h1>
+{% if users %}
+    
+    <table class="production-table">
+    <thead>
+        <tr>
+            <th>Nazwa użytkownika</th>
+            <th>Email użytkownika</th> 
+        </tr>
+    </thead>
+    <tbody>
+        {%for user in users%}
+        <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td> 
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+
+{%else%}
+<h2>Dodaj użytkowników do aplikacji</h2>
+{%endif%}
+</br>
+</br>
+<a href="{% url 'main_page_application' %}" class="btn button_back_to_main">
+    Powrót do strony głównej
+</a>
+<a href="{% url 'admin:index' %}" class="btn button_back_to_main">
+    Strona admin
+</a>
+{%endblock%}

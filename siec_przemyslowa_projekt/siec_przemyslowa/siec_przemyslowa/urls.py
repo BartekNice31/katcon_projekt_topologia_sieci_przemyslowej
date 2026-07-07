@@ -19,7 +19,7 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls,name='admins_page'),
     path('',views.home,name='home_page'),
     path('migracja_danych',views.migracja_danych,name='migracja_danych'),
     path('aktualizuj_github',views.aktualizuj_github,name='aktualizuj_github'),
@@ -27,5 +27,6 @@ urlpatterns = [
     path('',include('siec_przemyslowa_app_v1.urls')),
     path('informations/',views.informacje_o_aplikacji,name='informations'),
     path('',include('drukarki_etykiet_app_v1.urls')),
-    path('aktualizuj_bazy_danych',views.aktualizuj_bazy_danych,name='aktualizuj_bazy_danych')
+    path('aktualizuj_bazy_danych',views.aktualizuj_bazy_danych,name='aktualizuj_bazy_danych'),
+    path('uzytkownicy_aplikacji',views.get_all_users,name='uzytkownicy_aplikacji')
 ]
