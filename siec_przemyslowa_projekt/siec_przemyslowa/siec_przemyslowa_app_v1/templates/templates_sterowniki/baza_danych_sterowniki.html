@@ -1,0 +1,28 @@
+
+{%extends 'base_siec_przemyslowa.html'%}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{%block title%}
+BAZA DANYCH-LINIE PRODUKCYJNE
+
+{%endblock%}
+
+{%block header%}
+<a href="{% url 'main_page_application' %}">
+<img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
+</a>
+{%endblock%}
+
+{%block content%}
+<h1>BAZA DANYCH-STEROWNIKI PLC</h1> 
+
+<div class="options-box"> 
+    <a href="{% url 'sterowniki_lista' %}" class="btn button_class_bazadanych">
+        LINIA STEROWNIKÓW
+    </a>
+    <a href="{% url 'dodaj_sterownik_maszyny_produkcyjnej' %}" class="btn button_class_bazadanych">
+        DODAJ NOWY STEROWNIK
+    </a>
+</div>
+{%endblock%}

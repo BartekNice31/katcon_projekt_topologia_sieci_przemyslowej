@@ -163,6 +163,12 @@ def usun_urzadzenie_maszyny_produkcyjnej(request,id):
     urzadzenie_maszyny_produkcyjnej_do_usuniecia=models.UrzadzenieMaszyny.objects.get(id=id)
     urzadzenie_maszyny_produkcyjnej_do_usuniecia.delete()
     return render(request,'wyswietl_linie_produkcyjne')
+    
+def wyswietl_liste_sterownikow(request):
+    sterowniki=models.PLCMaszyna.objects.all()
+    for sterownik in sterowniki:
+        sterownik.Status_Polaczenia=check_connection(id_plc=sterownik.id)
+    return render(request,'templates_sterowniki/lista_sterowniki.html',{'sterowniki':sterowniki})
 
 def dodaj_sterownik_maszyny_produkcyjnej(request):
     if request.method == "POST":
@@ -171,7 +177,7 @@ def dodaj_sterownik_maszyny_produkcyjnej(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Sterownik został dodany.")
-            return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+            return HttpResponseRedirect("templates_sterowniki/lista_sterowniki.html")
         else:
             messages.error(request, "Błędnie wypełniony formularz.")
 
@@ -183,9 +189,22 @@ def dodaj_sterownik_maszyny_produkcyjnej(request):
         "templates_sterowniki/dodaj_sterownik_maszyny_produkcyjnej.html",
         {"form": form},
     )
-    
-def wyswietl_liste_sterownikow(request):
-    sterowniki=models.PLCMaszyna.objects.all()
-    for sterownik in sterowniki:
-        sterownik.Status_Polaczenia=check_connection(id_plc=sterownik.id)
-    return render('lista_sterowniki.html',{'sterowniki':sterowniki})
+ 
+def edytuj_sterownik_maszyny(request,id):
+    sterownik_do_edycji=models.PLCMaszyna.objects.get(id=id)
+    if request.method=="POST":
+        form=forms.PLCMaszynyForm(request.POST,instance=sterownik_do_edycji)
+        if form.is_valid():
+            form.save()
+            messages.success()
+            return HttpResponseRedirect('sterowniki_lista')
+        else:
+            messages.error("Błędnie wypełnione dane")
+
+def usun_sterownik_maszyny(request,id):
+    sterownik_do_usuniecia=models.PLCMaszyna.objects.get(id=id)
+    sterownik_do_usuniecia.delete()
+    return render(request,'templates_sterowniki/baza_danych_sterowniki.html')
+
+def sterowniki_baza_danych(request):
+    return render(request,'templates_sterowniki/baza_danych_sterowniki.html')

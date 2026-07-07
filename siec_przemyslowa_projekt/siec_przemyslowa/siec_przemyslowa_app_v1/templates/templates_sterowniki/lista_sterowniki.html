@@ -31,13 +31,13 @@ STEROWNIKI PLC LISTA
     <tbody>
         {% for sterownik in sterowniki %}
         <tr>
-            <td>{{ urzadzenie.Ip_Adres }}</a></td>
-            <td>{{ urzadzenie.Profinet_name }}</a></td>
-            <td>{{ urzadzenie.Rack }}</td>
-            <td>{{urzadzenie.get_Typ_sterownika_display}}</td>
-            <td>{{urzadzenie.Maszyna_produkcyjna}}</td>
+            <td>{{ sterownik.Ip_Adres }}</a></td>
+            <td>{{ sterownik.Profinet_name }}</a></td>
+            <td>{{ sterownik.Rack }}</td>
+            <td>{{sterownik.get_Typ_sterownika_display}}</td>
+            <td>{{sterownik.Maszyna_produkcyjna}}</td>
             <td> 
-                {% if urzadzenie.Status_Polaczenia %}
+                {% if sterownik.Status_Polaczenia %}
                     🟢 Online
                 {% else %}
                     🔴 Offline
@@ -59,7 +59,7 @@ STEROWNIKI PLC LISTA
 </a>
 
 <!--<a href="{% url 'wyswietl_linie_produkcyjne' %}" class="btn button_class_back">-->
-<a href="{% url 'wyswietl_linie_produkcyjne' %}" class="btn button_class_back"> 
+<a href="{% url 'sterowniki_baza_danych' %}" class="btn button_class_back"> 
     Powrót
 </a>
 
