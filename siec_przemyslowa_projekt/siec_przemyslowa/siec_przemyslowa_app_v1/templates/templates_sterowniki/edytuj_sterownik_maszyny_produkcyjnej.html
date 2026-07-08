@@ -5,17 +5,15 @@
 {%endblock%}
 <link rel="stylesheet" href="{% static 'css/production_lines_stylesheet.css' %}">
  
-
-{% block title %}
-EDYTUJ STEROWNIK MASZYNY PRODUKCYJNEJ
-{% endblock %}
-
 {% block header %}
 <a href="{% url 'main_page_application' %}">
 <img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
 </a>
-<h1>BAZA DANYCH-EDYCJA STEROWNIKA MASZYNY{{form.Nazwa_linii}}</h1>
 {% endblock %}
+
+{% block title %}
+EDYTUJ STEROWNIK MASZYNY PRODUKCYJNEJ
+{% endblock %} 
 
 {% block content %}
     <form method="POST">

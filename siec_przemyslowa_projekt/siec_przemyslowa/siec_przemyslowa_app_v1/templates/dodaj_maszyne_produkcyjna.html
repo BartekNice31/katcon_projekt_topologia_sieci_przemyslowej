@@ -35,4 +35,13 @@ DODAJ MASZYNĘ PRODUKCYJNĄ
 <a href="{% url 'dodaj_do_bazy_danych_strona' %}" class="btn button_class_home">
         POWRÓT
 </a>
+</br>
+{% if messages %}
+<h3>KOMUNIKATY:</h3>
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 {% endblock %}

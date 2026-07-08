@@ -8,13 +8,14 @@
 STEROWNIKI PLC LISTA
 {% endblock %}
 
-{% block header %}
+{%block header%}
+<a href="{% url 'main_page_application' %}">
 <img src="{% static 'images/katcon_logo.png' %}" alt="Logo firmy" style="height:60px;"> 
-<h1>SPIS STEROWNIKOW PLC</h1>
-{% endblock %}
+</a>
+{%endblock%} 
 
 {% block content %}
-
+<h1>SPIS STEROWNIKOW PLC</h1>
 <table class="machines-table">
     <thead>
         <tr> 
@@ -23,6 +24,7 @@ STEROWNIKI PLC LISTA
             <th>Rack</th>
             <th>Slot</th>
             <th>Typ sterownika</th>
+            <th>Maszyna Produkcyjna</th>
             <th>Status Połączenia</th>
             <th>Edytuj</th>
             <th>Usuń</th>
@@ -34,6 +36,7 @@ STEROWNIKI PLC LISTA
             <td>{{ sterownik.Ip_Adres }}</a></td>
             <td>{{ sterownik.Profinet_name }}</a></td>
             <td>{{ sterownik.Rack }}</td>
+            <td>{{sterownik.Slot}}</td>
             <td>{{sterownik.get_Typ_sterownika_display}}</td>
             <td>{{sterownik.Maszyna_produkcyjna}}</td>
             <td> 
@@ -44,7 +47,7 @@ STEROWNIKI PLC LISTA
                 {% endif %}
             </td>
             <td>
-                <a href="">Edytuj Sterownik</a>
+                <a href="{% url 'edytuj_sterownik_maszyny_produkcyjnej' sterownik.id %}">Edytuj Sterownik</a>
             </td>
             <td>
                 <a href="">Usuń Sterownik</a>

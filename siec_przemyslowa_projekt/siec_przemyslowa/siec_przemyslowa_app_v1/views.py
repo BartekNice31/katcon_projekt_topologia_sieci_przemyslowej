@@ -75,9 +75,13 @@ def dodaj_linie_produkcyjna(request):
         form=forms.LiniaProdukcyjnaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,"Dodana nowa linia produkcyjna")
             return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+        else:
+            messages.error(request,"Błędnie wypełnione dane")
     else:
         form=forms.LiniaProdukcyjnaForm()
+        
     return render(request,"dodaj_linie_produkcyjna.html",{"form":form})
 
 def dodaj_maszyne_produkcyjna(request):
@@ -85,7 +89,10 @@ def dodaj_maszyne_produkcyjna(request):
         form=forms.MaszynaProdukcyjnaForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,"Dodana nowa maszyna produkcyjna")
             return HttpResponseRedirect("wyswietl_linie_produkcyjne")
+        else:
+            messages.error(request,"źle wypełnione dane wejściowe")
     else:
         form=forms.MaszynaProdukcyjnaForm()
     return render(request,"dodaj_maszyne_produkcyjna.html",{"form":form})
@@ -190,16 +197,25 @@ def dodaj_sterownik_maszyny_produkcyjnej(request):
         {"form": form},
     )
  
-def edytuj_sterownik_maszyny(request,id):
-    sterownik_do_edycji=models.PLCMaszyna.objects.get(id=id)
-    if request.method=="POST":
-        form=forms.PLCMaszynyForm(request.POST,instance=sterownik_do_edycji)
+def edytuj_sterownik_maszyny(request, id):
+    sterownik_do_edycji = get_object_or_404(models.PLCMaszyna, id=id)
+
+    if request.method == "POST":
+        form = forms.PLCMaszynyForm(request.POST, instance=sterownik_do_edycji)
         if form.is_valid():
             form.save()
-            messages.success()
-            return HttpResponseRedirect('sterowniki_lista')
+            messages.success(request, "Sterownik został zaktualizowany.")
+            return redirect("sterowniki_lista")
         else:
-            messages.error("Błędnie wypełnione dane")
+            messages.error(request, "Błędnie wypełnione dane.")
+    else:
+        form = forms.PLCMaszynyForm(instance=sterownik_do_edycji)
+
+    return render(
+        request,
+        "templates_sterowniki/edytuj_sterownik_maszyny_produkcyjnej.html",
+        {"form": form},
+    )
 
 def usun_sterownik_maszyny(request,id):
     sterownik_do_usuniecia=models.PLCMaszyna.objects.get(id=id)

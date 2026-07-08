@@ -4,7 +4,7 @@
 {% load django_bootstrap5 %}
 
 {%block title%}
-BAZA DANYCH-LINIE PRODUKCYJNE
+BAZA DANYCH-STEROWNIKI PLC
 
 {%endblock%}
 
@@ -19,10 +19,16 @@ BAZA DANYCH-LINIE PRODUKCYJNE
 
 <div class="options-box"> 
     <a href="{% url 'sterowniki_lista' %}" class="btn button_class_bazadanych">
-        LINIA STEROWNIKÓW
+        LISTA STEROWNIKÓW
     </a>
     <a href="{% url 'dodaj_sterownik_maszyny_produkcyjnej' %}" class="btn button_class_bazadanych">
         DODAJ NOWY STEROWNIK
     </a>
+   
 </div>
+</br>
+</br>
+    <a href="{% url 'database_main_page' %}" class="btn button_class_bazadanych">
+        POWRÓT
+    </a>
 {%endblock%}

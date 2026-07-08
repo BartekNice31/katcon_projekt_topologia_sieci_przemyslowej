@@ -27,4 +27,6 @@ urlpatterns = [
       ,path('sterowniki_baza_danych',views.sterowniki_baza_danych,name='sterowniki_baza_danych')
       ,path('sterowniki_lista',views.wyswietl_liste_sterownikow,name='sterowniki_lista') 
       ,path('dodaj_sterownik_maszyny_produkcyjnej',views.dodaj_sterownik_maszyny_produkcyjnej,name='dodaj_sterownik_maszyny_produkcyjnej')
+      ,path('edytuj_sterownik_maszyny_produkcyjnej/<int:id>',views.edytuj_sterownik_maszyny,name='edytuj_sterownik_maszyny_produkcyjnej')
+      ,path('usun_sterownik_maszyny_produkcyjnej',views.usun_sterownik_maszyny,name='usun_sterownik_maszyny_produkcyjnej')
 ]
